@@ -1,0 +1,6 @@
+local awful = require("awful")
+awful.spawn("autostart")
+awful.spawn("picom --animations -b")
+awful.spawn("blueman-applet")
+awful.spawn("nm-applet")
+awful.spawn("synclient TapButton1 = 1")
