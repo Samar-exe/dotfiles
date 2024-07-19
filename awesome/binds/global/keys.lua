@@ -173,6 +173,9 @@ awful.keyboard.append_global_keybindings({
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")
 	end, { description = "Raise Volume", group = "system" }),
+	awful.key({}, "XF86AudioMute", function()
+		awful.spawn("amixer set Master toggle")
+	end, { description = "Raise Volume", group = "system" }),
 
 	awful.key({ modkey }, "Print", function()
 		awful.spawn("xfce4-screenshooter")
@@ -183,4 +186,13 @@ awful.keyboard.append_global_keybindings({
 			s.mywibox.visible = not s.mywibox.visible
 		end
 	end, { description = "toggle wibox", group = "awesome" }),
+
+	--Brightness controls
+	awful.key({}, "XF86MonBrightnessUp", function()
+		awful.spawn("brightnessctl set +5%")
+	end, { description = "Raise Brightness", group = "system" }),
+
+	awful.key({}, "XF86MonBrightnessDown", function()
+		awful.spawn("brightnessctl set 5%-")
+	end, { description = "Lower Brightness", group = "system" }),
 })
