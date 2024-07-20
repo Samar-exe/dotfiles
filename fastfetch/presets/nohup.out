@@ -1,0 +1,11 @@
+
+(org.pwmt.zathura:2860347): Gtk-WARNING **: 09:02:44.090: Theme directory apps@2x/22 of theme WhiteSur-dark has no size field
+
+
+(org.pwmt.zathura:2860347): Gtk-WARNING **: 09:02:44.090: Theme directory apps@2x/32 of theme WhiteSur-dark has no size field
+
+
+(org.pwmt.zathura:2860347): Gtk-WARNING **: 09:02:44.090: Theme directory preferences@2x/22 of theme WhiteSur-dark has no size field
+
+info: Opening plain database via sqlite backend.
+warning: sqlite database already exists. Set your database backend to sqlite
