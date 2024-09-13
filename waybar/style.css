@@ -1,0 +1,247 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: JetBrains Mono, sans-serif;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 0px;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+    padding-left: 5px;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+    background-color: #2faaff;
+}
+
+#workspaces {
+    padding: 2px;
+    background-color: #78a9ff;
+    border-radius: 3px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    background-color: transparent;
+    color: #161616;
+    opacity: 1;
+    font-weight: bolder;
+    margin: 0px;
+
+}
+
+#workspaces button:hover:hover,
+#workspaces button.empty:hover {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    color: #ffffff;
+    opacity: 1;
+}
+
+
+#workspaces button.active {
+    color: #ffffff;
+    opacity: 1;
+    min-width: 0px;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    color: #ffffff;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+/* .modules-left>widget:first-child>#workspaces { */
+/*     margin-left: 0; */
+/* } */
+
+.modules-left {
+    margin-left: 2px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right>widget:last-child>#workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: #525252;
+    color: #dde1e6;
+    border-radius: 3px;
+}
+
+#battery {
+    background-color: #525252;
+    color: #dde1e6;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #161616;
+    background-color: #42be65;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+#backlight {
+    background-color: #525252;
+    border-radius: 3px;
+}
+
+
+#pulseaudio {
+    background-color: #78a9ff;
+    color: #000000;
+    padding-right: 18px;
+    border-radius: 3px;
+}
+
+#pulseaudio.muted {
+    background-color: #90b1b1;
+    padding-right: 10px;
+    color: #2a5c45;
+}
+
+#tray {
+    background-color: #416aaf;
+    border-radius: 3px;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#mpd {
+    background-color: #66cc99;
+    color: #2a5c45;
+}
+
+#mpd.disconnected {
+    background-color: #f53c3c;
+}
+
+#mpd.stopped {
+    background-color: #90b1b1;
+}
+
+#mpd.paused {
+    background-color: #51a37a;
+}
+
+#language {
+    background: #ee5396;
+    color: black;
+    padding: 0 5px;
+    margin: 0;
+    /* min-width: 16px; */
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
