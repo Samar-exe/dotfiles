@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(10, 10, 24, 0.3);
     border-bottom: 0px;
     color: #ffffff;
     transition-property: background-color;
@@ -52,19 +52,20 @@ button:hover {
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #2faaff;
+    color: #98bb6c;
 }
 
 #workspaces {
     padding: 2px;
-    background-color: #78a9ff;
-    border-radius: 3px;
+    background-color: transparent;
+    border-radius: 10px;
+  border-bottom: 0px solid #7e9cd8;
 }
 
 #workspaces button {
     padding: 0 6px;
     background-color: transparent;
-    color: #161616;
+    color: #e6c384;
     opacity: 1;
     font-weight: bolder;
     margin: 0px;
@@ -73,7 +74,7 @@ button:hover {
 
 #workspaces button:hover:hover,
 #workspaces button.empty:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0);
     border-radius: 3px;
     color: #ffffff;
     opacity: 1;
@@ -81,7 +82,7 @@ button:hover {
 
 
 #workspaces button.active {
-    color: #ffffff;
+    color: #76946a;
     opacity: 1;
     min-width: 0px;
     background-color: transparent;
@@ -138,14 +139,14 @@ button:hover {
 }
 
 #clock {
-    background-color: #525252;
-    color: #dde1e6;
+    background-color: transparent;
+    color: #fafdff;
     border-radius: 3px;
 }
 
 #battery {
-    background-color: #525252;
-    color: #dde1e6;
+    background-color: transparent;
+    color: #dee1e6;
     border-radius: 3px;
     padding-left: 5px;
     padding-right: 5px;
@@ -153,8 +154,8 @@ button:hover {
 
 #battery.charging,
 #battery.plugged {
-    color: #161616;
-    background-color: #42be65;
+    color: #94f7c5;
+    background-color: transparent;
 }
 
 @keyframes blink {
@@ -166,8 +167,8 @@ button:hover {
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: transparent;
+    color: #fc7b81;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -181,14 +182,14 @@ label:focus {
 
 
 #backlight {
-    background-color: #525252;
+    background-color: transparent;
     border-radius: 3px;
 }
 
 
 #pulseaudio {
-    background-color: #78a9ff;
-    color: #000000;
+    background-color: transparent;
+    color: #dee1e6;
     padding-right: 18px;
     border-radius: 3px;
 }
@@ -200,7 +201,7 @@ label:focus {
 }
 
 #tray {
-    background-color: #416aaf;
+    background-color: #384148;
     border-radius: 3px;
 }
 
@@ -231,8 +232,8 @@ label:focus {
 }
 
 #language {
-    background: #ee5396;
-    color: black;
+    background: transparent;
+    color: #ffeba6;
     padding: 0 5px;
     margin: 0;
     /* min-width: 16px; */

@@ -9,13 +9,13 @@
     "exclusive": "true",
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces",
         "pulseaudio",
         "tray"
     ],
-    "modules-center": [],
+    "modules-center": [
+        "hyprland/workspaces",
+    ],
     "modules-right": [
-        "custom/pulseaudio-cycle",
         "backlight",
         "battery",
         "battery#bat2",
