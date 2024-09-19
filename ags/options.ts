@@ -70,22 +70,22 @@ const options = mkOptions(OPTIONS, {
         layout: {
             start: opt<Array<import("widget/bar/Bar").BarWidget>>([
                 "launcher",
-                "workspaces",
-                "taskbar",
+                "colorpicker",
+                "media",
+                //"taskbar",
                 "expander",
-                "messages",
             ]),
             center: opt<Array<import("widget/bar/Bar").BarWidget>>([
-                "date",
+                "workspaces",
             ]),
             end: opt<Array<import("widget/bar/Bar").BarWidget>>([
-                "media",
                 "expander",
                 "systray",
-                "colorpicker",
                 "screenrecord",
                 "system",
                 "battery",
+                "messages",
+                "date",
                 "powermenu",
             ]),
         },
@@ -101,7 +101,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
-            format: opt("%H:%M - %A %e."),
+            format: opt("%H:%M"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
@@ -197,7 +197,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     datemenu: {
-        position: opt<"left" | "center" | "right">("center"),
+        position: opt<"left" | "center" | "right">("right"),
         weather: {
             interval: opt(60_000),
             unit: opt<"metric" | "imperial" | "standard">("metric"),
@@ -229,7 +229,7 @@ const options = mkOptions(OPTIONS, {
     notifications: {
         position: opt<Array<"top" | "bottom" | "left" | "right">>(["top", "right"]),
         blacklist: opt(["Spotify"]),
-        width: opt(440),
+        width: opt(340),
     },
 
     hyprland: {
