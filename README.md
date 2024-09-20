@@ -1,5 +1,5 @@
 <h3 align="center">
-  <img src="./.github/assets/logo.png" width="240" alt="Logo" style="border-radius:16px;"/>
+  <img src="./.github/assets/logo.png" width="256" alt="Logo" style="border-radius:16px;"/>
 </h3>
 
 ## Hyprland
@@ -69,6 +69,6 @@ cd dotfiles
 cp -r .config/* ~/.config/
 ```
 
-### Hyprland
-
+> [!NOTE]
+> For more information about individual modules check their README.md file that I have added in their own modules
 
