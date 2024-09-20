@@ -5,24 +5,27 @@ config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
 	"Noto Color Emoji",
 })
-config.colors = {
-foreground = "#dcd7ba",
-		background = "#1f1f28",
-
-		cursor_bg = "#c8c093",
-		cursor_fg = "#c8c093",
-		cursor_border = "#c8c093",
-
-		selection_fg = "#c8c093",
-		selection_bg = "#2d4f67",
-
-		scrollbar_thumb = "#16161d",
-		split = "#16161d",
-
-		ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-		brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-		indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
-}
+config.color_scheme = "Poimandres"
+--kannagawa
+-- config.colors = {
+-- foreground = "#dcd7ba",
+-- 		background = "#1f1f28",
+--
+-- 		cursor_bg = "#c8c093",
+-- 		cursor_fg = "#c8c093",
+-- 		cursor_border = "#c8c093",
+--
+-- 		selection_fg = "#c8c093",
+-- 		selection_bg = "#2d4f67",
+--
+-- 		scrollbar_thumb = "#16161d",
+-- 		split = "#16161d",
+--
+-- 		ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
+-- 		brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
+-- 		indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
+-- }
+--
 -- Decay
 -- config.colors = {
 -- indexed = {[16] = "#f1cf8a", [17] = "#dee1e6"},
@@ -73,7 +76,7 @@ foreground = "#dcd7ba",
 --     brights = {"#384148", "#fc7b81", "#94f7c5", "#ffeba6", "#8cc1ff", "#e2a6ff", "#90daff", "#fafdff"},
 -- }
 config.font.font_size=12
-config.window_background_opacity = 0.6
+config.window_background_opacity = 0.45
 config.enable_wayland = false
 config.enable_scroll_bar = false
 config.use_fancy_tab_bar = false
