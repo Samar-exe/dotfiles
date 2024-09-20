@@ -57,4 +57,18 @@ make all && sudo make install
 
 ## Setting up my dotfiles.
 
+> Cloning the repository into local system.
+
+```bash
+git clone https://github.com/Samar-exe/dotfiles.git
+cd dotfiles
+```
+> Copy the configs to their respective directories. Don't forget to backup your previous configs!!
+
+```bash
+cp -r .config/* ~/.config/
+```
+
+### Hyprland
+
 
