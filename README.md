@@ -4,7 +4,9 @@
 
 ## Hyprland
 
+![something](./.github/assets/candy.mp4) 
 ![something](./.github/assets/candy1.png) 
+![something](./.github/assets/candy2.png) 
 
 ## Features 
 
@@ -78,5 +80,5 @@ cp -r .config/* ~/.config/
 
 ## TODO 
 
-- Change bar from waybar to [astal](https://aylur.github.io/astal/guide/typescript/installation)  
-- Making some nice utility widgets like, music controller, notification center using astal.
+- [ ] Change bar from waybar to [astal](https://aylur.github.io/astal/guide/typescript/installation)  
+- [ ] Making some nice utility widgets like, music controller, notification center using astal.
