@@ -4,8 +4,7 @@
 
 ## Hyprland
 
-![showcase1](.github/assets/candy1.png) 
-![showcase2](.github/assets/candy2.png) 
+![something](./.github/assets/candy1.png) 
 
 ## Features 
 
