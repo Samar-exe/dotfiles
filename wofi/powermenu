@@ -1,0 +1,15 @@
+location=3
+yoffset=0
+width=32%
+lines=8
+
+prompt=
+show=drun
+insensitive=true
+allow_images=true
+hide_scroll=true
+hide_search = true
+
+aways_parse_args=true
+show_all=true
+

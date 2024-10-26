@@ -1,0 +1,73 @@
+{
+  "group/web": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 200,
+      "children-class": "webchilds",
+      "transition-left-to-right": true
+    },
+    "modules": ["custom/web", "custom/chatgpt", "custom/odinproject"]
+  },
+
+  "group/theming": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 200,
+      "children-class": "webchilds",
+      "transition-left-to-right": true
+    },
+    "modules": ["custom/themefront","custom/wallchange", "custom/themechange"]
+  },
+
+  "custom/web": {
+    "format": ""
+  },
+  "custom/chatgpt": {
+    "format": " ",
+    "on-click": "google-chrome-stable --app=https://chatgpt.com ",
+    "tooltip": true,
+    "tooltip-format": "Chat Gpt"
+  },
+  "custom/odinproject": {
+    "format": " ",
+    "on-click": "google-chrome-stable --app=https://theodinproject.com ",
+    "tooltip": true,
+    "tooltip-format": "Odin Project"
+  },
+  "custom/mpd": {
+    "format": "󰎇",
+    "tooltip": true,
+    "tooltip-format": "{}",
+    "interval": 10,
+    "exec": "mpc current",
+    "exec-if": "pgrep mpd",
+    "on-click": "mpc toggle",
+    "on-click-right": "wezterm start ncmpcpp"
+  },
+  "custom/themefront": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Theming"
+  },
+  "custom/wallchange": {
+    "format": "{}",
+    "rotate": 0,
+    "exec": "echo 󰆊 ",
+    "on-click": "~/.config/waybar/scripts/wofi.sh",
+    "tooltip": true,
+    "tooltip-format": "Select wallpaper"
+  },
+  "custom/themechange": {
+    "format": "{}",
+    "exec": "echo 󰉼",
+    "on-click": "~/.local/bin/sw.sh",
+    "tooltip": true,
+    "tooltip-format": "Select pywal themes"
+  },
+
+  "custom/emptyspace":{
+    "format": " ",
+    "tooltip": false
+  }
+}
+

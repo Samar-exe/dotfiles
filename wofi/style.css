@@ -1,0 +1,46 @@
+@import url("/home/samar/.cache/wal/colors.css");
+
+* {
+  font-family: "JetBrains Mono";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#window {
+  min-width: 500px;
+  margin: 0px;
+  border: 2px solid rgba(--wofi-rgb-color1, 0.94);
+  border-radius: 10px;
+  background-color: rgba(--wofi-rgb-color0, 0.94);
+}
+
+#input {
+  margin: 15px;
+  border-radius: 25px;
+  color: --wofi-color7;
+}
+
+#scroll {
+  margin-bottom: 15px;
+}
+
+#entry {
+  margin: 0px 15px;
+  color: --wofi-color7;
+}
+
+#entry:selected {
+  border-radius: 0px;
+  border: none;
+  outline: none;
+  background-color: rgba(--wofi-rgb-color1, 0.94);
+  color: --wofi-color0;
+}
+
+#entry > box {
+  margin-left: 16px;
+}
+
+#entry image {
+  padding-right: 10px;
+}

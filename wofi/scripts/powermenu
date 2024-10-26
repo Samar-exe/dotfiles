@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ | wofi -c /home/samar/.config/wofi/powermenu --dmenu 

@@ -1,0 +1,73 @@
+{
+  "hypr/window": {
+    "max-length": 50
+  },
+  "battery": {
+    "interval": 1,
+    "format": "{icon} {capacity}",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰂁", "󰂂"],
+    "format-charging": "   Charging",
+    "states": {
+      "warning": 30,
+      "critical": 15,
+      "full": 100
+    },
+    "tooltip": true,
+    "tooltip-format": "{timeTo}"
+  },
+  "clock": {
+    "format-alt": "{:%H:%M}",
+    "tooltip": true,
+    "tooltip-format": "{:%a %d %b}"
+  },
+  "bluetooth": {
+    "format-on": "",
+    "format-connected": "Connected",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "on-click": "wezterm start bluetui",
+    "tooltip": true,
+    "tooltip-format": "{device_alias}"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "*": 4
+    }
+  },
+
+  "hyprland/window": {
+    "format": "{initialTitle}"
+  },
+
+  "network": {
+    "format-wifi": "{icon}  | {essid}",
+    "format-disconnected": "Disconnected",
+    "format-icons": ["󰖩"],
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "wezterm start nmtui"
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": " ",
+    "format-icons": {
+      "headphone": "󰋎",
+      "headset": "",
+      "default": ["", ""]
+    },
+    "scroll-step": 10,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"]
+  }
+}
