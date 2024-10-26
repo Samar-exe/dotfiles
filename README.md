@@ -4,7 +4,6 @@
 
 ## Hyprland
 
-![videocase](.github/assets/candy.mp4)
 ![showcase1](.github/assets/candy1.png) 
 ![showcase2](.github/assets/candy2.png) 
 
