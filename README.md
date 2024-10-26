@@ -4,23 +4,28 @@
 
 ## Hyprland
 
-![showcase1](.github/assets/showcase1.png) 
-![showcase2](.github/assets/showcase2.png) 
-![showcase3](.github/assets/showcase3.png) 
+![videocase](.github/assets/candy.mp4)
+![showcase1](.github/assets/candy1.png) 
+![showcase2](.github/assets/candy2.png) 
+
+## Features 
+
+- Wallpaper switcher
+- Colorscheme picker using pywal
 
 ## Information
 - **Operating System** • Arch Linux
 - **Window Manager/DE** • Hyprland
 - **Terminal** • wezterm
 - **Shell** • zsh
-- **Aur Helper** • yay
-- **Panel** • ags
-- **Launcher** • ags
+- **Aur Helper** • paru
+- **Panel** • waybar
+- **Launcher** • wofi
 - **File Manager** • nautilus
-- **Notifications** • ags
+- **Notifications** • dunst
 - **Wallpaper Daemon** • swww
 - **Text Editor** • neovim
-- **Colorscheme** • Poimandres 
+- **Colorscheme** • Pywal 
 
 ## ⚙️ Setup
   > [!WARNING]
@@ -31,7 +36,7 @@
 > [!NOTE]
 > Even though I use arch and can build hyprland using yay, I have not done so. I have cloned the main repo from github in my .local/src directory and then compiled Hyprland. 
 
-Now Assuming your aur helper is 'yay', follow the steps below, follow the steps below:
+Now Assuming your aur helper is 'yay', follow the steps below:
 
 1. Dependencies:
 ```bash
@@ -70,5 +75,10 @@ cp -r .config/* ~/.config/
 ```
 
 > [!NOTE]
-> For more information about individual modules check their README.md file that I have added in their own modules
+> For more information about individual modules check their README.md file that I have added in their own modules (WIP)
 
+
+## TODO 
+
+- Change bar from waybar to [astal](https://aylur.github.io/astal/guide/typescript/installation)  
+- Making some nice utility widgets like, music controller, notification center using astal.

@@ -1,11 +1,11 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder({})
-
+local opacity = 0.7;
 config.font = wezterm.font_with_fallback({
-	"JetBrains Mono",
-	"Noto Color Emoji",
+	"jetbrains mono",
+	"noto color emoji",
 })
-config.color_scheme = "Poimandres"
+config.color_scheme = "Adventure"
 --kannagawa
 -- config.colors = {
 -- foreground = "#dcd7ba",
@@ -76,7 +76,7 @@ config.color_scheme = "Poimandres"
 --     brights = {"#384148", "#fc7b81", "#94f7c5", "#ffeba6", "#8cc1ff", "#e2a6ff", "#90daff", "#fafdff"},
 -- }
 config.font.font_size=12
-config.window_background_opacity = 0.45
+config.window_background_opacity = opacity
 config.enable_wayland = false
 config.enable_scroll_bar = false
 config.use_fancy_tab_bar = false
