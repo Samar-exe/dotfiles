@@ -24,13 +24,13 @@
   },
   "custom/chatgpt": {
     "format": " ",
-    "on-click": "google-chrome-stable --app=https://chatgpt.com ",
+    "on-click": "firefox --kiosk chatgpt.com",
     "tooltip": true,
     "tooltip-format": "Chat Gpt"
   },
   "custom/odinproject": {
     "format": " ",
-    "on-click": "google-chrome-stable --app=https://theodinproject.com ",
+    "on-click": "firefox --kiosk theodinproject.com",
     "tooltip": true,
     "tooltip-format": "Odin Project"
   },
@@ -60,7 +60,7 @@
   "custom/themechange": {
     "format": "{}",
     "exec": "echo 󰉼",
-    "on-click": "~/.local/bin/sw.sh",
+    "on-click": " exec /home/samar/.local/bin/sw.sh",
     "tooltip": true,
     "tooltip-format": "Select pywal themes"
   },

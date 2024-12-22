@@ -104,11 +104,11 @@ window#waybar {
 }
 
 #battery.critical {
-  color: @color10;
+  color: red;
 }
 
 #battery.warning {
-  color: @color4;
+  color: yellow;
 }
 
 

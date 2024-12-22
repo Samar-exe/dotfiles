@@ -5,17 +5,18 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpapers/"
 
 
 while true; do
-    # List files in the wallpaper directory and send them to wofi
-   SELECTED=$(ls "$WALLPAPER_DIR"/*.{png,jpg,jpeg,gif,webp} 2>/dev/null | xargs -n 1 basename | wofi --dmenu --prompt "Select a wallpaper:")
-
+  # List files in the wallpaper directory and send them to wofi
+  SELECTED=$(ls "$WALLPAPER_DIR"/*.{png,jpg,jpeg,gif,webp} 2>/dev/null | xargs -n 1 basename | wofi --dmenu --prompt "Select a wallpaper:" 2> /dev/null )
+cp $WALLPAPER_DIR/$SELECTED /home/samar/.config/hypr/
+mv /home/samar/.config/hypr/$SELECTED wallpaper
     # Check if a selection was made
     if [ -n "$SELECTED" ]; then
-        # Set the selected wallpaper using swww
-     #   swww img --transition-fps 60 --transition-type grow --transition-duration 2 --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" "$WALLPAPER_DIR/$SELECTED"
-    swww img --transition-fps 60 --transition-type grow --transition-duration 0.5 --transition-bezier 1,0.9,1,0.7 --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" "$WALLPAPER_DIR/$SELECTED" && wal -i "$WALLPAPER_DIR/$SELECTED" 
-    break
-    else
-        # Exit the loop if no selection is made (e.g., user closes wofi or presses ESC)
-       break
-  fi
-done
+      # Set the selected wallpaper using swww
+      #   swww img --transition-fps 60 --transition-type grow --transition-duration 2 --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" "$WALLPAPER_DIR/$SELECTED"
+      swww img --transition-fps 60 --transition-type grow --transition-duration 0.5 --transition-bezier 1,0.9,1,0.7 --invert-y --transition-pos "$(hyprctl cursorpos | grep -E '^[0-9]' || echo "0,0")" "$WALLPAPER_DIR/$SELECTED" && wal -i "$WALLPAPER_DIR/$SELECTED" && 
+        break
+            else
+              # Exit the loop if no selection is made (e.g., user closes wofi or presses ESC)
+              break
+              fi
+            done
