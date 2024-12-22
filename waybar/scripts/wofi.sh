@@ -9,6 +9,7 @@ while true; do
   SELECTED=$(ls "$WALLPAPER_DIR"/*.{png,jpg,jpeg,gif,webp} 2>/dev/null | xargs -n 1 basename | wofi --dmenu --prompt "Select a wallpaper:" 2> /dev/null )
 cp $WALLPAPER_DIR/$SELECTED /home/samar/.config/hypr/
 mv /home/samar/.config/hypr/$SELECTED wallpaper
+
     # Check if a selection was made
     if [ -n "$SELECTED" ]; then
       # Set the selected wallpaper using swww

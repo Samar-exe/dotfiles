@@ -16,7 +16,7 @@
       "children-class": "webchilds",
       "transition-left-to-right": true
     },
-    "modules": ["custom/themefront","custom/wallchange", "custom/themechange"]
+    "modules": ["custom/themefront", "custom/wallchange", "custom/themechange"]
   },
 
   "custom/web": {
@@ -65,9 +65,14 @@
     "tooltip-format": "Select pywal themes"
   },
 
-  "custom/emptyspace":{
+  "custom/emptyspace": {
     "format": " ",
     "tooltip": false
+  },
+  "custom/applaunch": {
+    "format": "󰣇",
+    "on-click": " exec wofi --show drun",
+    "tooltip": true,
+    "tooltip-format": "App Launcher"
   }
 }
-

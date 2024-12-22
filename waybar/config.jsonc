@@ -10,6 +10,7 @@
   ],
   "modules-left": [
     "custom/emptyspace",
+    "custom/applaunch",
     "custom/mpd",
     "group/web",
     "group/theming"
