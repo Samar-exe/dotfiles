@@ -1,0 +1,99 @@
+/**
+ * Rofi Theme for Emoji Picker
+ */
+
+@import "colors.rasi"
+
+* {
+    font:                       "Fira Sans 11";
+    background-color:           @surface;
+    text-color:                 @on-surface;
+}
+
+window {
+    height:                     500px;
+    width:                      700px;
+    transparency:               "real";
+    fullscreen:                 false;
+    enabled:                    true;
+    cursor:                     "default";
+    spacing:                    0px;
+    padding:                    0px;
+    border:                     2px;
+    border-color:               @outline-variant;
+    border-radius:              12px;
+    background-color:           @surface;
+}
+
+mainbox {
+    enabled:                    true;
+    spacing:                    0px;
+    padding:                    0px;
+    orientation:                vertical;
+    children:                   [ "inputbar", "listview" ];
+    background-color:           transparent;
+}
+
+inputbar {
+    enabled:                    true;
+    spacing:                    0px;
+    padding:                    16px;
+    background-color:           @surface-container-high;
+    children:                   [ "entry" ];
+}
+
+entry {
+    enabled:                    true;
+    padding:                    8px 12px;
+    border-radius:              8px;
+    background-color:           @surface-container-low;
+    text-color:                 @on-surface;
+    cursor:                     text;
+    placeholder:                "Search emoji...";
+    placeholder-color:          @on-surface-variant;
+}
+
+listview {
+    enabled:                    true;
+    columns:                    5;
+    lines:                      4;
+    cycle:                      true;
+    dynamic:                    true;
+    scrollbar:                  true;
+    layout:                     vertical;
+    fixed-height:               false;
+    fixed-columns:              true;
+    spacing:                    10px;
+    padding:                    20px;
+    background-color:           @surface;
+}
+
+element {
+    enabled:                    true;
+    spacing:                    0px;
+    padding:                    20px;
+    cursor:                     pointer;
+    background-color:           @surface-container;
+    text-color:                 @on-surface;
+    border-radius:              8px;
+    orientation:                vertical;
+}
+
+element selected.normal {
+    background-color:           @primary-container;
+    text-color:                 @on-primary-container;
+}
+
+element-text {
+    enabled:                    true;
+    vertical-align:             0.5;
+    horizontal-align:           0.5;
+    background-color:           transparent;
+    text-color:                 inherit;
+    font:                       "Noto Color Emoji 16";
+}
+
+error-message {
+    text-color:                 @on-error-container;
+    background-color:           @error-container;
+}

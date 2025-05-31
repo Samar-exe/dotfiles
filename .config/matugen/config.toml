@@ -1,0 +1,53 @@
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "center", "--transition-step",
+"15","--transition-fps", "120"]
+set = false
+
+[templates.hyprland]
+input_path = '/home/samar/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.pywalfox]
+input_path = '~/.config/matugen/templates/pywalfox-colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/waybar-colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+
+[templates.swaync]
+input_path = '~/.config/matugen/templates/swaync-colors.css'
+output_path = '~/.config/swaync/matugen/matugen-swaync.css'
+post_hook = 'swaync-client -R && swaync-client -rs'
+
+[templates.wlogout]
+input_path = './templates/wlogout-colors.css'
+output_path = '~/.config/wlogout/colors.css'
+
+[templates.gtk3]
+input_path = './templates/gtk3-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+
+[templates.gtk4]
+input_path = './templates/gtk4-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.sidebar]
+input_path = './templates/sidebar-colors.css'
+output_path = '~/.config/ags/colors.css'
+
+[template.nvim]
+input_path = '~/.config/nvim/pywal/matugen.lua'
+output_path= '~/.cache/wal/base46-dark.lua'

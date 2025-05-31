@@ -1,0 +1,165 @@
+configuration {
+    modi:                       "drun,filebrowser,window,run";
+    font:                       "Fira Sans 11";
+    show-icons:                 true;
+    icon-theme:                 "kora";
+    display-drun:               " ";
+    display-run:                " ";
+    display-filebrowser:        "  ";
+    display-window:             "  ";
+    drun-display-format:        "{name}";
+    hover-select:               true;
+    scroll-method:              1;
+    me-select-entry:            "";
+    me-accept-entry:            "MousePrimary";
+    window-format:              "{w} · {c} · {t}";
+}
+
+@theme "./colors.rasi"
+@import "~/.config/ml4w/cache/current_wallpaper.rasi"
+
+window {
+    height:                     35em;
+    width:                      56em;
+    transparency:               "real";
+    fullscreen:                 false;
+    enabled:                    true;
+    cursor:                     "default";
+    spacing:                    0em;
+    padding:                    0em;
+    border:                     2px;
+    border-color:               @outline-variant;
+    border-radius:              1em;
+    background-color:           transparent;
+}
+
+mainbox {
+    enabled:                    true;
+    spacing:                    0em;
+    padding:                    0em;
+    orientation:                vertical;
+    children:                   [ "inputbar", "listbox" ];
+    background-color:           transparent;
+    background-image:		@current-image;
+}
+
+inputbar {
+    enabled:                    true;
+    spacing:                    0em;
+    padding:                    2em;
+    children:                   [ "textbox-prompt-colon", "entry" ];
+    background-color:           @surface-container-high;
+    border-radius:              1em;
+}
+
+textbox-prompt-colon {
+    enabled:                    true;
+    expand:                     false;
+    str:                        "";
+    padding:                    0.5em 1em 0.5em 1em;
+    text-color:                 @on-surface;
+    font:                       "Fira Sans 13";
+    background-color:           transparent;
+}
+
+entry {
+    enabled:                    true;
+    border-radius:              1em;
+    spacing:                    0.5em;
+    padding:                    0.5em 1em;
+    background-color:           @surface-container-low;
+    text-color:                 @on-surface;
+    cursor:                     text;
+    placeholder:                "Search";
+    placeholder-color:          @on-surface-variant;
+}
+
+listbox {
+    padding:                    0em;
+    spacing:                    0em;
+    orientation:                horizontal;
+    children:                   [ "listview", "mode-switcher" ];
+    background-color:           transparent;
+}
+
+listview {
+    padding:                    1.5em;
+    spacing:                    0.75em;
+    enabled:                    true;
+    columns:                    2;
+    lines:                      3;
+    cycle:                      true;
+    dynamic:                    true;
+    scrollbar:                  false;
+    layout:                     vertical;
+    fixed-height:               true;
+    fixed-columns:              true;
+    background-color:           transparent;
+    text-color:                 @on-surface;
+}
+
+mode-switcher {
+    orientation:                vertical;
+    width:                      6.6em;
+    enabled:                    true;
+    padding:                    1.5em;
+    spacing:                    1.5em;
+    background-color:           transparent;
+}
+
+button {
+    cursor:                     pointer;
+    border-radius:              1em;
+    background-color:           @surface-container;
+    text-color:                 @on-surface;
+}
+
+button selected {
+    background-color:           @primary-container;
+    text-color:                 @on-primary-container;
+}
+
+
+element {
+    enabled:                    true;
+    spacing:                    0em;
+    padding:                    0.75em 1em;
+    cursor:                     pointer;
+    background-color:           transparent;
+    text-color:                 @on-surface;
+    border-radius:              1em;
+}
+
+element selected.normal {
+    background-color:           @primary-container;
+    text-color:                 @on-primary-container;
+}
+
+
+element-icon {
+    size:                       2.5em;
+    background-color:           transparent;
+    text-color:                 inherit;
+}
+
+element-text {
+    vertical-align:             0.5;
+    horizontal-align:           0.1;
+    background-color:           transparent;
+    text-color:                 inherit;
+    font:                       "Fira Sans 11";
+}
+
+error-message {
+    text-color:                 @on-error-container;
+    background-color:           @error-container;
+    children:                   [ "textbox" ];
+}
+
+textbox {
+    text-color:                 inherit;
+    background-color:           inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0.5;
+}
+
