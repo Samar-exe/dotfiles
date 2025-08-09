@@ -1,0 +1,127 @@
+/* Colors */
+
+@import 'matugen/matugen-swaync.css';
+@define-color background @background;
+@define-color groupbackground @background;
+@define-color buttoncolor @secondary;
+@define-color bordercolor @primary;
+@define-color fontcolor @on_surface;
+@define-color hover alpha(@primary, .55);
+
+
+@define-color text @on_surface;
+@define-color background-alt @surface_container_highest;
+@define-color background-alt-alpha alpha(@surface_bright, .55);
+@define-color background-sec alpha(@surface, 0.55);
+@define-color selected @primary;
+@define-color accent @tertiary;
+@define-color text-alt @surface;
+@define-color hover alpha(@selected, .55);
+@define-color urgent @error;
+
+* {
+	font-family: "Fira Sans Semibold";
+}
+
+/* Control Center */
+
+.control-center {
+	border: 3px solid @bordercolor;
+	padding: 10px;
+}
+
+button {
+	border: 0px;
+	min-width: 35px;
+	background: @buttoncolor;
+	color: @on_secondary;
+}
+
+.notification-group-header {
+	font-size: 14px;
+}
+
+/* Widgets */
+
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+	background: @hover;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button.toggle:checked {
+	background: @hover;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button.toggle:checked label {
+	color: @surface;
+}
+
+
+/* Notification */
+
+.notification {
+	border: 3px solid @bordercolor;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+	color: #ffffff;
+	background: transparent;
+}
+
+/*Volume and backlight*/
+
+
+progressbar,
+progress,
+trough {
+	border-radius: 20px;
+	background: transparent;
+}
+
+trough highlight {
+	padding: 4px;
+	background: @primary;
+	border-radius: 20px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+}
+
+trough highlight:hover {
+	padding: 4px;
+	background: @selected;
+	border-radius: 20px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+trough slider {
+	min-height: 6px;
+	min-width: 14px;
+}
+
+.widget-volume {
+	background: transparent;
+	color: @text;
+	padding: 4px;
+	margin: 6px;
+	border-radius: 6px;
+}
+
+.widget-backlight {
+	background: transparent;
+	color: @text;
+	padding: 4px;
+	margin: 6px;
+	border-radius: 6px;
+}
+
+
+/*Music Player*/
+
+.widget-mpris {
+	background: alpha(@selected, .2);
+	border-radius: 16px;
+	padding: 6px;
+	margin: 20px 6px;
+}
