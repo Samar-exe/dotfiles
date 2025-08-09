@@ -1,25 +1,20 @@
-/*
-#  ____        __ _  
-# |  _ \ ___  / _(_) 
-# | |_) / _ \| |_| | 
-# |  _ < (_) |  _| | 
-# |_| \_\___/|_| |_| 
-#                    
-# by Stephan Raabe (2023) 
-# ----------------------------------------------------- 
-*/
+/***
+ *    ┏┓┏┳┓┓┏┓ ┏┓  ┏┓
+ *    ┗┓ ┃ ┗┫┃ ┣ ━━┏┛
+ *    ┗┛ ┻ ┗┛┗┛┗┛  ┗━
+ *                   
+ */
+
 
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,filebrowser,window,run";
-    font:                       "Fira Sans 11";
     show-icons:                 true;
-    icon-theme:                 "kora";
-    display-drun:                " ";
-    display-run:                 " ";
-    display-filebrowser:         "  ";
-    display-window:              "  ";
-	drun-display-format:        "{name}";
+    display-drun:               " ";
+    display-run:                " ";
+    display-filebrowser:        " ";
+    display-window:             " ";
+    drun-display-format:        "{name}";
     hover-select:               false;
     scroll-method:              1;
     me-select-entry:            "";
@@ -28,27 +23,9 @@ configuration {
     
 }
 
-/* ---- Load font ---- */
-@import "~/.config/ml4w/settings/rofi-font.rasi"
-
-/* ---- Load colors ---- */
-@theme "~/.config/rofi/colors.rasi"
-
-/* ---- Load wallpaper ---- */
-@import "~/.config/ml4w/cache/current_wallpaper.rasi"
-
-/* ---- Load border width ---- */
-@import "~/.config/ml4w/settings/rofi-border.rasi"
-
-/* ---- Load border radius ---- */
-@import "~/.config/ml4w/settings/rofi-border-radius.rasi"
-
-/* ---- Map colors ---- */
-* {
-    color11: @primary;
-    color5: @on-primary-fixed;
-    foreground: @on-surface;
-}
+/*****----- Global Properties -----*****/
+@import "~/.config/rofi/launchers/styles/shared/colors.rasi"
+@import "~/.config/rofi/launchers/styles/shared/fonts.rasi"
 
 // Main //
 window {
@@ -60,9 +37,9 @@ window {
     cursor:                      "default";
     spacing:                     0em;
     padding:                     0em;
-    border:                      @border-width;
-    border-color:                @color11;
-    border-radius:               @border-radius;
+    border:                      3px;
+    border-color:                @border-color;
+    border-radius:               2em;
     background-color:            @background;
 }
 
@@ -73,7 +50,7 @@ mainbox {
     orientation:                 vertical;
     children:                    [ "inputbar" , "listbox" ];
     background-color:            transparent;
-    background-image:            @current-image;
+    background-image:            url("~/.config/rofi/images/currentWalBlur.thumb", height);
 }
 
 
@@ -84,18 +61,18 @@ inputbar {
     padding:                     5em;
     children:                    [ "textbox-prompt-colon", "entry" ];
     background-color:            transparent;
-    background-image:            url("~/.config/ml4w/cache/current_wallpaper", width);
+    background-image:            url("~/.config/rofi/images/currentWalBlur.thumb", width);
 }
 
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "  ";
-    padding:                     1em 0.2em 0em 0em;
+    str:                         "  ";
+    padding:                     1em 1em 0em 0em;
     text-color:                  @foreground;
     border-radius:               2em 0em 0em 2em;
-    background-color:            @color5;
-    background-image:            url("~/.config/ml4w/cache/current_wallpaper", width);
+    background-color:            @background-alpha;
+    background-image:            url("~/.config/rofi/images/currentWalBlur.thumb", height);
 }
 
 entry {
@@ -103,7 +80,7 @@ entry {
     border-radius:               0em 2em 2em 0em;
     spacing:                     1em;
     padding:                     1em;
-    background-color:            @color5;
+    background-color:            @background-alpha;
     text-color:                  @foreground;
     cursor:                      text;
     placeholder:                 "Search";
@@ -116,7 +93,7 @@ listbox {
     spacing:                     0em;
     orientation:                 horizontal;
     children:                    [ "listview" , "mode-switcher" ];
-    background-color:            @background;
+    background-color:            @background-alpha;
 }
 
 listview {
@@ -156,8 +133,8 @@ button {
 }
 
 button selected {
-    background-color:            @color5;
-    text-color:                  @foreground;
+    background-color:            @selected;
+    text-color:                  @selected-text;
 }
 
 
@@ -166,55 +143,47 @@ element {
     enabled:                     true;
     spacing:                     0em;
     padding:                     0.5em;
+    border-radius:               1em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @foreground;
 }
 
-element selected.normal {
-    background-color:            @color5;
-    text-color:                  @foreground;
-    border-radius:               1.5em;
-}
-
 element normal.normal {
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
 }
-
 element normal.urgent {
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
 }
-
 element normal.active {
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
 }
-
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  @selected-text;
+}
 element selected.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:            @urgent;
+    text-color:                  @selected-text;
 }
-
 element selected.active {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:            @active;
+    text-color:                  @selected-text;
 }
-
 element alternate.normal {
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
 }
-
 element alternate.urgent {
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
 }
-
 element alternate.active {
     background-color:            inherit;
-    text-color:                  @foreground;
+    text-color:                  inherit;
 }
 
 element-icon {
@@ -222,7 +191,6 @@ element-icon {
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;
-    border-radius:               0em;
 }
 
 element-text {
@@ -247,3 +215,4 @@ textbox {
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
+

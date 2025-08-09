@@ -1,0 +1,227 @@
+/***
+ *    ┏┓┏┳┓┓┏┓ ┏┓  ┏┓
+ *    ┗┓ ┃ ┗┫┃ ┣ ━━ ┫
+ *    ┗┛ ┻ ┗┛┗┛┗┛  ┗┛
+ *                   
+ */
+
+
+configuration {
+    modi:                       "drun,run,filebrowser,window";
+    show-icons:                 true;
+    display-drun:               " ";
+    display-run:                " ";
+    display-filebrowser:        " ";
+    display-window:             " ";
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
+}
+
+/* config and colors ------------------------------ */
+@import "~/.config/rofi/launchers/styles/shared/colors.rasi"
+@import "~/.config/rofi/launchers/styles/shared/fonts.rasi"
+
+/* Window ----------------------------------------- */
+window {
+    fullscreen:                 false;
+    transparency:               "real";
+    cursor:                     "default";
+    background-color:           @background-alpha;
+    border-color:               @border-color;
+    location:                   center;
+    anchor:                     center;
+    border:                     0px 3px 0px 3px;
+    border-radius:              15px;
+    width:                      55%;
+}
+
+/* Main Box ---------------------------------------- */
+mainbox {
+    children:                   [ "img", "listbox"];
+    orientation:                horizontal;
+    background-color:           transparent;
+    padding:                    14px;
+    spacing:                    24px;
+}
+
+/* Image ----------------------------------------------- */
+img {
+    border-radius:              15px;
+    background-color:           transparent;
+    background-image:           url("~/.config/rofi/images/currentWal.thumb", height);
+}
+
+
+/* Listbox ------------------------------------------ */
+listbox {
+    spacing:                     25px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "message", "listview", "mode-switcher" ];
+}
+
+/* Listview ---------------------------------------- */
+listview {
+    columns:                     1;
+    lines:                       6;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    border:                      0px;
+    spacing:                     16px;
+    background-color:            transparent;
+}
+
+/* Mode Switcher -------------------------------------*/
+mode-switcher{
+    enabled:                     true;
+    spacing:                     20px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+button {
+    padding:                     20px;
+    border-radius:               12px;
+    background-color:            @background-alpha;
+    text-color:                  inherit;
+    cursor:                      pointer;
+}
+button selected {
+    border:                      0px 3px 0px 3px;
+    border-color:                @border-color;
+    background-color:            @background-alpha;
+    text-color:                  @selected;
+}
+
+/* Inputbar --------------------------------------------- */
+inputbar {
+    children:                    [ "textbox-icon", "entry" ];
+    border-radius:               12px;
+    background-color:            white/12%;
+    text-color:                  @foreground;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     14px;
+}
+
+textbox-icon {
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+    str: "  ";
+}
+
+/* Entry ----------------------------------------------- */
+entry {
+    cursor:                     text;
+    expand:                     false;
+    placeholder-color:          inherit;
+    placeholder:                "Search....";
+    background-color:           transparent;
+    text-color:                 inherit;
+}
+
+/* ---- Elements ---- */
+element {
+    cursor:                     pointer;
+    spacing:                    15px;
+    background-color:           transparent;
+    text-color:                 @foreground;
+    border-radius:              10px;
+    padding:                    12px;
+}
+
+element-text {
+    vertical-align:              0.5;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+element-icon {
+    size:                        30px;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+element normal.urgent {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+element selected.normal {
+    background-color:            inherit;
+    text-color:                  @selected;
+    border:			 0px 3px 0px 3px;
+    border-color:                @border-color;
+}
+element selected.urgent {
+    background-color:            inherit;
+    text-color:                  @urgent;
+    border:                      0px 3px 0px 3px;
+    border-color:                @urgent;
+}
+element selected.active {
+    background-color:            inherit;
+    text-color:                  @active;
+    border:                      0px 3px 0px 3px;
+    border-color:                @active;
+}
+element alternate.normal {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+element alternate.urgent {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+element alternate.active {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+
+/* Scrollbar ---------------------------------------------------- */
+scrollbar {
+    margin:                      0px 4px;
+    handle-width:                8px;
+    handle-color:                white;
+    background-color:            white/6%;
+    border-radius:               4px;
+}
+
+/* Message ------------------------------------------------------ */
+message {
+    background-color:            white/12%;
+    border:                      1px solid;
+    border-color:                transparent;
+    border-radius:               12px;
+    padding:                     24px;
+}
+error-message {
+    padding:                     100px;
+    border:                      0px solid;
+    border-radius:               0px;
+    background-color:            @background-alpha;
+    text-color:                  @foreground;
+}
+textbox {
+    background-color:            transparent;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    highlight:                   none;
+}
