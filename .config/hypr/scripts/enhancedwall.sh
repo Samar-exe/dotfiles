@@ -159,7 +159,7 @@ show_wallpaper_menu() {
     rm -f "${cacheDir}"/.lock_* 2>/dev/null || true
     
     # Process files in parallel
-    find "$wall_dir" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -print0 | \
+    find "$wall_dir" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif"  \) -print0 | \
         xargs -0 -P "$PARALLEL_JOBS" -I {} bash -c 'process_image "{}"'
     
     # Clean orphaned cache files and their locks

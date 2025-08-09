@@ -9,7 +9,7 @@
 style_dir="$HOME/.config/rofi/launchers/styles"
 
 # Style-theme
-style_theme='style-9'
+style_theme='style-7'
 
 
 # Run
