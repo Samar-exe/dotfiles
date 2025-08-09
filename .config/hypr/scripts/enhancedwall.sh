@@ -8,6 +8,25 @@
 # Enhanced Wallpaper Script with Menu Selector
 # -----------------------------------------------------
 
+# Debug mode - uncomment to enable verbose logging
+# set -x
+
+# Ensure script runs from correct location
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# Log script start
+echo ":: Wallpaper Script Starting - $(date)"
+
+# Check for required dependencies early
+missing_deps=()
+command -v magick >/dev/null || missing_deps+=(imagemagick)
+command -v jq >/dev/null || missing_deps+=(jq)
+
+if [ ${#missing_deps[@]} -gt 0 ]; then
+    echo ":: Warning: Missing dependencies: ${missing_deps[*]}"
+fi
+
 # -----------------------------------------------------
 # Check to use wallpaper cache
 # -----------------------------------------------------
@@ -44,17 +63,25 @@ cacheDir="$HOME/.cache/wallcache"
 
 # Ensures that the script only run once if wallpaper effect enabled
 if [ -f $waypaperrunning ]; then
+    echo ":: Script already running, removing lock and exiting"
     rm $waypaperrunning
-    exit
+    exit 0
 fi
+
+# Create initial lock to prevent multiple instances
+echo $ > $waypaperrunning
 
 # Create folder with generated versions of wallpaper if not exists
 if [ ! -d $generatedversions ]; then
-    mkdir $generatedversions
+    echo ":: Creating wallpaper cache directory: $generatedversions"
+    mkdir -p $generatedversions
 fi
 
 # Create cache dir if not exists
-[ -d "$cacheDir" ] || mkdir -p "$cacheDir"
+if [ ! -d "$cacheDir" ]; then
+    echo ":: Creating menu cache directory: $cacheDir" 
+    mkdir -p "$cacheDir"
+fi
 
 # -----------------------------------------------------
 # Menu Selector Functions
@@ -81,7 +108,7 @@ calculate_icon_size() {
         icon_size=14
     fi
     rofi_override="element-icon{size:${icon_size}px;}"
-    rofi_command="rofi -i -show -dmenu -theme $HOME/.config/rofi/applets/wallSelect.rasi -theme-str $rofi_override"
+    rofi_command="rofi -i -show -dmenu -theme $HOME/.config/rofi/applets/wallSelect.rasi -theme-str $rofi_override 2>/dev/null"
 }
 
 # Detect number of cores and set a sensible number of jobs
@@ -169,7 +196,7 @@ show_wallpaper_menu() {
             done | $rofi_command)
         
         if [[ -n "$wall_selection" ]]; then
-            echo "${wall_dir}/${wall_selection}"
+            echo "${wall_dir}${wall_selection}"
         fi
     fi
 }
@@ -183,23 +210,36 @@ if [ -z $1 ]; then
     if command -v rofi &> /dev/null && [ -d "$wall_dir" ]; then
         echo ":: Opening wallpaper selector menu..."
         selected_wallpaper=$(show_wallpaper_menu)
-        if [ -n "$selected_wallpaper" ]; then
-            wallpaper="$selected_wallpaper"
-        elif [ -f $cachefile ]; then
-            wallpaper=$(cat $cachefile)
-        else
-            wallpaper=$defaultwallpaper
+        
+        # Check if user cancelled (ESC pressed) - rofi returns empty and exit code 1
+        if [ $? -ne 0 ] || [ -z "$selected_wallpaper" ]; then
+            echo ":: Wallpaper selection cancelled by user"
+            rm -f $waypaperrunning
+            exit 0
         fi
+        
+        wallpaper="$selected_wallpaper"
+        echo ":: Selected wallpaper: $wallpaper"
     else
         # Fall back to cached or default wallpaper if rofi not available or wall_dir doesn't exist
+        if [ ! -d "$wall_dir" ]; then
+            echo ":: Error: Wallpaper directory not found: $wall_dir"
+        fi
+        if ! command -v rofi &> /dev/null; then
+            echo ":: Error: rofi not found"
+        fi
+        
         if [ -f $cachefile ]; then
             wallpaper=$(cat $cachefile)
+            echo ":: Using cached wallpaper: $wallpaper"
         else
             wallpaper=$defaultwallpaper
+            echo ":: Using default wallpaper: $wallpaper"
         fi
     fi
 else
     wallpaper=$1
+    echo ":: Using provided wallpaper: $wallpaper"
 fi
 
 used_wallpaper=$wallpaper
@@ -344,7 +384,12 @@ else
     echo ":: Generate new cached wallpaper blur-$blur-$effect-$wallpaperfilename with blur $blur"
     # notify-send --replace-id=1 "Generate new blurred version" "with blur $blur" -h int:value:66
     if command -v magick &> /dev/null && [ -f "$used_wallpaper" ]; then
-        magick "$used_wallpaper" -resize 75% "$blurredwallpaper"
+        # For GIFs, extract first frame only to avoid processing all frames
+        if [[ "$used_wallpaper" =~ \.(gif|GIF)$ ]]; then
+            magick "${used_wallpaper}[0]" -resize 75% "$blurredwallpaper"
+        else
+            magick "$used_wallpaper" -resize 75% "$blurredwallpaper"
+        fi
         echo ":: Resized to 75%"
         if [ ! "$blur" == "0x0" ]; then
             magick "$blurredwallpaper" -blur $blur "$blurredwallpaper"
@@ -372,9 +417,92 @@ echo "* { current-image: url(\"$blurredwallpaper\", height); }" >"$rasifile"
 
 echo ":: Generate new cached wallpaper square-$wallpaperfilename"
 if command -v magick &> /dev/null && [ -f "$tmpwallpaper" ]; then
-    magick "$tmpwallpaper" -gravity Center -extent 1:1 "$squarewallpaper"
+    # For GIFs, extract first frame only to avoid processing all frames
+    if [[ "$tmpwallpaper" =~ \.(gif|GIF)$ ]]; then
+        magick "${tmpwallpaper}[0]" -gravity Center -extent 1:1 "$squarewallpaper"
+    else
+        magick "$tmpwallpaper" -gravity Center -extent 1:1 "$squarewallpaper"
+    fi
     cp "$squarewallpaper" "$generatedversions/square-$wallpaperfilename.png"
 fi
+
+# -----------------------------------------------------
+# Create quad wallpaper (2x2 grid with diagonal cuts)
+# -----------------------------------------------------
+
+quadwallpaper="$HOME/.config/ml4w/cache/quad_wallpaper.png"
+echo ":: Generate new cached wallpaper quad-$wallpaperfilename"
+
+if [ -f $generatedversions/quad-$effect-$wallpaperfilename.png ] && [ "$force_generate" == "0" ] && [ "$use_cache" == "1" ]; then
+    echo ":: Use cached wallpaper quad-$effect-$wallpaperfilename"
+else
+    echo ":: Generate new cached wallpaper quad-$effect-$wallpaperfilename"
+    if command -v magick &> /dev/null && [ -f "$used_wallpaper" ]; then
+        # For GIFs, extract first frame only for processing
+        source_image="$used_wallpaper"
+        if [[ "$used_wallpaper" =~ \.(gif|GIF)$ ]]; then
+            source_image="${used_wallpaper}[0]"
+        fi
+        
+        # Get wallpaper dimensions for proper scaling
+        wallpaper_info=$(magick identify -format "%w %h" "$source_image")
+        width=$(echo $wallpaper_info | cut -d' ' -f1)
+        height=$(echo $wallpaper_info | cut -d' ' -f2)
+        
+        # Calculate half dimensions for quadrants
+        half_width=$((width / 2))
+        half_height=$((height / 2))
+        
+        temp_base="/tmp/quad_base_$(basename "$wallpaperfilename" .${wallpaperfilename##*.})"
+        
+        # Create 4 quadrant crops
+        magick "$source_image" -crop "${half_width}x${half_height}+0+0" "${temp_base}_tl.png"           # Top-left
+        magick "$source_image" -crop "${half_width}x${half_height}+${half_width}+0" "${temp_base}_tr.png" # Top-right
+        magick "$source_image" -crop "${half_width}x${half_height}+0+${half_height}" "${temp_base}_bl.png" # Bottom-left  
+        magick "$source_image" -crop "${half_width}x${half_height}+${half_width}+${half_height}" "${temp_base}_br.png" # Bottom-right
+        
+        # Create diagonal masks for geometric cuts
+        # Diagonal cut mask for top-right (cut from bottom-left to top-right)
+        magick -size "${half_width}x${half_height}" xc:black \
+            -fill white -draw "polygon 0,${half_height} ${half_width},0 ${half_width},${half_height}" \
+            "${temp_base}_mask_tr.png"
+            
+        # Diagonal cut mask for bottom-left (cut from top-right to bottom-left)  
+        magick -size "${half_width}x${half_height}" xc:black \
+            -fill white -draw "polygon 0,0 ${half_width},${half_height} 0,${half_height}" \
+            "${temp_base}_mask_bl.png"
+        
+        # Apply diagonal masks to create cut effects
+        magick "${temp_base}_tr.png" "${temp_base}_mask_tr.png" -alpha off -compose CopyOpacity -composite "${temp_base}_tr_cut.png"
+        magick "${temp_base}_bl.png" "${temp_base}_mask_bl.png" -alpha off -compose CopyOpacity -composite "${temp_base}_bl_cut.png"
+        
+        # Create the final quad layout with transparent background
+        magick -size "${width}x${height}" xc:transparent \
+            "${temp_base}_tl.png" -geometry "+0+0" -composite \
+            "${temp_base}_tr_cut.png" -geometry "+${half_width}+0" -composite \
+            "${temp_base}_bl_cut.png" -geometry "+0+${half_height}" -composite \
+            "${temp_base}_br.png" -geometry "+${half_width}+${half_height}" -composite \
+            "$quadwallpaper"
+        
+        # Save to cache
+        cp "$quadwallpaper" "$generatedversions/quad-$effect-$wallpaperfilename.png"
+        
+        # Clean up temp files
+        rm -f "${temp_base}"_*.png
+        echo ":: Quad wallpaper with diagonal cuts created"
+    fi
+fi
+
+# Copy cached quad version if it exists
+if [ -f "$generatedversions/quad-$effect-$wallpaperfilename.png" ]; then
+    cp "$generatedversions/quad-$effect-$wallpaperfilename.png" "$quadwallpaper"
+fi
+
 if [ -f "$wallpaper" ]; then
     cp "$wallpaper" "$currWal"
 fi
+
+# Clean up lock file at the end
+rm -f $waypaperrunning
+
+echo ":: Wallpaper Script Complete - $(date)"
