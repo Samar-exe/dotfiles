@@ -298,10 +298,10 @@ echo ":: Setting wallpaper with $used_wallpaper"
 touch $waypaperrunning
 
 # Try different wallpaper setters in order of preference
-if command -v waypaper >/dev/null 2>&1; then
-    echo ":: Using waypaper to set wallpaper"
-    waypaper --wallpaper "$used_wallpaper"
-elif command -v swww >/dev/null 2>&1; then
+#if command -v waypaper >/dev/null 2>&1; then
+ #   echo ":: Using waypaper to set wallpaper"
+ #   waypaper --wallpaper "$used_wallpaper"
+if command -v swww >/dev/null 2>&1; then
     echo ":: Using swww to set wallpaper"
     # Initialize swww if not running
     swww query || swww-daemon --format xrgb

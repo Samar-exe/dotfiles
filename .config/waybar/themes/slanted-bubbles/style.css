@@ -17,6 +17,7 @@
 	font-family: GeistMono Nerd Font Propo;
 	font-size: 12px;
 	min-height: 0;
+	transition: all 0.3s ease;
 }
 
 /*------------Window--------------------*/
