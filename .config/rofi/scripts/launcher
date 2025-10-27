@@ -1,1 +1,0 @@
-../launchers/launcher.sh
